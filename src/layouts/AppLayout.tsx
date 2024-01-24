@@ -1,62 +1,65 @@
-import Navbar from "@/components/NavBar";
-import { UserDropDown } from "@/components/UserDropDown";
-import { useState } from "react";
+import Sidebar from "@/components/NavBar";
+import { Toggle } from "@/components/ThemeToggle";
+import {
+  UserDropDown,
+  ButtonAccess,
+  AvatarAccess,
+} from "@/components/UserDropDown";
+import { LogoSafehaven } from "@/components/icons";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { Separator } from "@/components/ui/separator";
+import { AlignJustify, Moon } from "lucide-react";
 import { Outlet } from "react-router-dom";
 
-// import { LogoIcon, LogoIconExpanded } from "@/components/icons"
-
-
 function AppLayout() {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const btnUpdateMenuVisibility = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   return (
-    <div className="w-full h-screen flex flex-col">
-      <div className="bg-background h-16 relative border-b-2 z-50">
-        <div className="h-full flex items-center justify-end p-6 gap-16 ">
-          <div className={`flex gap-16 justify-between w-full items-center pl-32 ${isExpanded && "pl-[21rem]"}`}>
-            <h3 className="text-lg hidden lg:block">
-              <span className="text-primary">Incio</span>
-            </h3>
-
-            <div className="flex gap-16">
-              <UserDropDown/> 
-            </div>
+    <div className="bg-background w-full h-screen flex-col min-w-[320px]">
+      {/* NavbarResponsive */}
+      <div className="h-16 flex items-center justify-end p-6 lg:hidden bg-background border-b">
+        <div className="flex gap-16 justify-between w-full items-center">
+          <AlignJustify />
+          <LogoSafehaven />
+          <div className="relative right-[6rem]">
+            <UserDropDown>
+              <AvatarAccess />
+            </UserDropDown>
           </div>
         </div>
-        <div
-          className={` ${
-            isExpanded ? "w-[15.4rem]" : "w-20"
-          } duration-200 bg-background h-screen absolute top-0 border-r`}
-        >
-          <div className={`mx-auto pt-4 ${isExpanded && "pl-6"}`}>
-            {/* {isExpanded ? (
-              <LogoIconExpanded className="h-16 w-[9.9rem] origin-left duration-200 scale-110" />
-            ) : (
-              <LogoIcon className="w-[3rem] h-16 origin-left duration-200 scale-100 mx-auto" />
-            )} */}
+      </div>
+
+      {/* sidebar */}
+      <div
+        className={`w-[15rem] duration-200 bg-background h-screen absolute top-0 border-r shadow-2xl hidden lg:block`}
+      >
+        <div className="mx-auto pt-4 pl-6">
+          <Moon className="h-16 w-[9.9rem] origin-left duration-200 scale-110" />
+        </div>
+        <div className="">
+          <Sidebar />
+        </div>
+        <div className="mt-[25rem]">
+          <Separator className="w-[80%] mx-auto bg-gray-400" />
+          <div className="flex justify-center mb-10 mt-8">
+            <UserDropDown>
+              <ButtonAccess />
+            </UserDropDown>
           </div>
-          <div className="grow">
-            <Navbar
-              isExpanded={isExpanded}
-              btnUpdateMenuVisibility={btnUpdateMenuVisibility}
-            />
-          </div>
+          <Toggle />
         </div>
       </div>
       <div
-        className={`${
-          isExpanded &&
-          "left-[10.1rem] w-[35.4rem] xl:left-[8.2rem] xl:w-[106rem] scale-95 origin-right"
-        } transition-all duration-200 relative ml-10 xl:ml-0 py-16 px-40`}
+        className="
+          pt-3
+          pl-[1rem]
+          lg:pl-[16rem]
+          pr-[1rem]
+          h-screen
+          min-w-[320px]
+        "
       >
         <Outlet />
       </div>
-      {/* <Toaster />
-      <TailwindIndicator /> */}
+      <TailwindIndicator />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import * as React from "react";
 import {
-  CaretSortIcon,
+  // CaretSortIcon,
   ChevronDownIcon,
-  DotsHorizontalIcon,
+  // DotsHorizontalIcon,
 } from "@radix-ui/react-icons";
 import {
   ColumnFiltersState,
@@ -20,9 +20,9 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
+  // DropdownMenuItem,
+  // DropdownMenuLabel,
+  // DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {

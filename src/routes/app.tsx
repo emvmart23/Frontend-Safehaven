@@ -1,6 +1,6 @@
 import AppLayout from "@/layouts/AppLayout";
 import { TabsTable } from "@/modules/admin/components/TabsTable";
-import { ProfileForm } from "@/modules/request/Request";
+import { Request } from "@/modules/request/page/Request";
 import Services from "@/modules/service/pages/Services";
 import Home from "@/pages/Home";
 
@@ -18,20 +18,16 @@ const appRoutes = [
             element: <Home/>,
           },
           {
-            path: "/employees",
-            element: <div>Trabajadores</div>
-          },
-          {
             path: "/service",
             element: <Services/>
           },
           {
             path: "/aboutus",
-            element: <ProfileForm/>
+            element: <div>max</div>
           },
           {
             path: "/request",
-            element:<ProfileForm/> 
+            element:<Request/> 
           },
           {
             path:"/admin",

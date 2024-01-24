@@ -1,31 +1,21 @@
-import { HomeIcon, ServerIcon, User2Icon } from "lucide-react";
+import { Hammer, HomeIcon, ServerIcon } from "lucide-react";
 
 const MENU_ITEMS = [
   {
     name: "Inicio",
     url: "/",
-    icon: <HomeIcon/>,
-  },
-  {
-    name: "Trabajadores",
-    url: "/employees",
-    icon: <HomeIcon/>,
+    icon: <HomeIcon className="text-foreground"/>,
   },
   {
     name: "Servicios",
     url: "/service",
-    icon: <ServerIcon/>,
+    icon: <Hammer className="text-foreground"/>,
   },
   {
-    name: "Nosotros",
-    url: "/request",
-    icon: <HomeIcon/>,
-  },
-  {
-    name: "Admin",
-    url: "/admin",
-    icon: <HomeIcon/>,
-  },
+    name: "Contactanos",
+    url: "/aboutus",
+    icon: <ServerIcon className="text-foreground"/>,
+  }
 ];
 
 export { MENU_ITEMS };
