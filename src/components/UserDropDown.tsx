@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/buttom";
 import {
   DropdownMenu,
@@ -13,13 +12,23 @@ import {
 import { LogIn } from "lucide-react";
 
 interface Props {
-  children: React.ReactNode;
+  className?: string;
+  text?:string 
 }
 
-export function UserDropDown({ children }: Props) {
+export function UserDropDown({ className, text }: Props) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
+        <Button
+          size="icon"
+          variant="outline"
+          className={`${className} `}
+        >
+          <span className="text-foreground/80">{text}</span>
+          <LogIn className="text-foreground/70 w-6 h-6" />
+        </Button>
+      </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-56 relative left-[12.5rem] bottom-[4rem]"
         forceMount
@@ -46,32 +55,3 @@ export function UserDropDown({ children }: Props) {
     </DropdownMenu>
   );
 }
-
-export const ButtonAccess = () => {
-  return (
-    <Button
-      size="icon"
-      variant="outline"
-      className="flex gap-3 h-9 w-[10rem] p-5 shadow-2xl"
-    >
-      <span className="text-foreground">Acceder</span>
-      <LogIn className="text-foreground w-6 h-6" />
-    </Button>
-  );
-};
-
-export const AvatarAccess = () => {
-  return (
-    <Button
-      variant="outline"
-      className="relative h-8 w-8 rounded-full border border-muted-foreground"
-    >
-      <Avatar className="h-8 w-8">
-        <AvatarImage src="" alt="@shadcn" />
-        <AvatarFallback>
-          <LogIn className="text-foreground w-6 h-6" />
-        </AvatarFallback>
-      </Avatar>
-    </Button>
-  );
-};

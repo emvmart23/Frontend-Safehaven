@@ -17,11 +17,11 @@ function NavItem({ name, url, icon }: Props) {
     >
       <div
         className={`${
-          isActive && "bg-primary text-muted"
+          isActive && "bg-primary text-foreground/90"
         } p-2 w-full group-hover:bg-primary group-hover:text-muted rounded transition-all duration-75 origin-left mt-5 flex gap-5`}
       >
         <span>{icon}</span>
-        <span className="origin-left text-foreground">{name}</span>
+        <span className="origin-left text-foreground/80">{name}</span>
       </div>
     </NavLink>
   );

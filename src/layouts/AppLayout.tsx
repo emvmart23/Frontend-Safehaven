@@ -1,51 +1,37 @@
 import Sidebar from "@/components/NavBar";
 import { Toggle } from "@/components/ThemeToggle";
-import {
-  UserDropDown,
-  ButtonAccess,
-  AvatarAccess,
-} from "@/components/UserDropDown";
+import { UserDropDown } from "@/components/UserDropDown";
 import { LogoSafehaven } from "@/components/icons";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Separator } from "@/components/ui/separator";
-import { AlignJustify, Moon } from "lucide-react";
+import { AlignJustify } from "lucide-react";
 import { Outlet } from "react-router-dom";
 
 function AppLayout() {
   return (
-    <div className="bg-background w-full h-screen flex-col min-w-[320px]">
-      {/* NavbarResponsive */}
-      <div className="h-16 flex items-center justify-end p-6 lg:hidden bg-background border-b">
-        <div className="flex gap-16 justify-between w-full items-center">
-          <AlignJustify />
-          <LogoSafehaven />
-          <div className="relative right-[6rem]">
-            <UserDropDown>
-              <AvatarAccess />
-            </UserDropDown>
+    <div className="bg-background/95 w-full h-full flex-col min-w-[320px]">
+      <nav className="flex bg-background/95 border-b h-16 p-6 lg:hidden">
+        <div className="flex justify-between items-center w-full">
+          <div className="flex justify-center items-center gap-5">
+            <AlignJustify />
+            <LogoSafehaven className="w-[8rem]" />
           </div>
+          <UserDropDown className="rounded-full p-1 w-10 h-10" />
         </div>
-      </div>
-
-      {/* sidebar */}
+      </nav>
       <div
-        className={`w-[15rem] duration-200 bg-background h-screen absolute top-0 border-r shadow-2xl hidden lg:block`}
+        className={`w-[15rem] h-full fixed top-0 border-r border-foreground/20 shadow-2xl hidden lg:block`}
       >
-        <div className="mx-auto pt-4 pl-6">
-          <Moon className="h-16 w-[9.9rem] origin-left duration-200 scale-110" />
+        <LogoSafehaven className="w-full h-[5rem] mx-auto p-4" />
+        <Sidebar />
+        <Separator className="mt-[25rem] w-[80%] mx-auto bg-gray-400" />
+        <div className="ml-6 mb-10 mt-8">
+          <UserDropDown
+            text="Acceder"
+            className="flex gap-3 h-9 w-[12rem] p-5 shadow-2xl border border-foreground/20"
+          />
         </div>
-        <div className="">
-          <Sidebar />
-        </div>
-        <div className="mt-[25rem]">
-          <Separator className="w-[80%] mx-auto bg-gray-400" />
-          <div className="flex justify-center mb-10 mt-8">
-            <UserDropDown>
-              <ButtonAccess />
-            </UserDropDown>
-          </div>
-          <Toggle />
-        </div>
+        <Toggle />
       </div>
       <div
         className="
@@ -53,7 +39,6 @@ function AppLayout() {
           pl-[1rem]
           lg:pl-[16rem]
           pr-[1rem]
-          h-screen
           min-w-[320px]
         "
       >
