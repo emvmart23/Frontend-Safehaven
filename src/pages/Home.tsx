@@ -202,7 +202,7 @@ export default function Home() {
         text-foreground/80
         p-20"
       >
-        <h3
+        <h2
           className="
         text-[2.4rem] 
         font-bold 
@@ -211,7 +211,7 @@ export default function Home() {
         gap-4"
         >
           Porque Safehaven ?
-        </h3>
+        </h2>
       </section>
     </>
   );

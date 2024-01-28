@@ -1,8 +1,8 @@
 import Sidebar from "@/components/NavBar";
+import { LogoSafehaven } from "@/components/Icons";
+import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { Toggle } from "@/components/ThemeToggle";
 import { UserDropDown } from "@/components/UserDropDown";
-import { LogoSafehaven } from "@/components/icons";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Separator } from "@/components/ui/separator";
 import { AlignJustify } from "lucide-react";
 import { Outlet } from "react-router-dom";
