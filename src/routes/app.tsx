@@ -1,6 +1,6 @@
 import AppLayout from "@/layouts/AppLayout";
 import { TabsTable } from "@/modules/admin/components/TabsTable";
-import { Request } from "@/modules/request/page/Request";
+import { Request } from "@/modules/request/pages/Request";
 import Services from "@/modules/service/pages/Services";
 import Home from "@/pages/Home";
 
