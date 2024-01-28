@@ -22,7 +22,7 @@ function SectionBlock({ title, children, className }: Props) {
     >
       <h2
         className="
-        text-[2.4rem] 
+        text-[2.2rem] 
         font-bold 
         flex 
         items-center 

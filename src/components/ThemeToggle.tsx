@@ -2,6 +2,8 @@ import { useTheme } from "@/context/theme";
 import { Moon } from "lucide-react";
 import { Switch } from "./ui/switch";
 
+// sacar el componente fuera de la UI
+
 export function Toggle() {
   const { theme, setTheme } = useTheme();
   const currentTheme = () => setTheme(theme === "light" ? "dark" : "light")

@@ -1,25 +1,9 @@
 import { HeaderImageWrapper } from "@/components/HeaderImageWrapper";
+import { List } from "@/components/List";
+import SectionBlock from "@/components/SectionBlock";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { data, dataList } from "@/data/dataHome";
 import { Cog, Star } from "lucide-react";
-
-const data = [
-  {
-    name: "title 1",
-    text: "dsdsdsdsdsdsds",
-  },
-  {
-    name: "title 1",
-    text: "dsdsdsdsdsdsds",
-  },
-  {
-    name: "title 1",
-    text: "dsdsdsdsdsdsds",
-  },
-  {
-    name: "title 1",
-    text: "dsdsdsdsdsdsds",
-  },
-];
 
 export default function Home() {
   return (
@@ -41,32 +25,14 @@ export default function Home() {
             rounded-2xl"
         />
       </HeaderImageWrapper>
-      <section
-        className="
-        flex-col 
-        flex 
-        justify-center 
-        items-center 
-        gap-4 
-        p-20
-        text-foreground/80
-        "
+      <SectionBlock
+        title={"Lo mas Popular "}
+        className="flex-col justify-center items-center"
       >
-        <h2
-          className="
-          text-[2.4rem] 
-          font-bold 
-          flex 
-          items-center 
-          gap-4"
-        >
-          Lo mas popular
-          <Star size={34} />
-        </h2>
         <p
           className="
           mb-10 
-          w-[30%] 
+          w-[40%] 
           min-w-[320px] 
           text-center 
           md:text-[1.1rem]
@@ -86,7 +52,7 @@ export default function Home() {
           max-w-[60rem]
           "
         >
-          {data.map((item, index) => (
+          {data.map(({ name, text }, index) => (
             <Card
               key={index}
               className="
@@ -185,34 +151,26 @@ export default function Home() {
                     origin-bottom-right"
                   />
                 </div>
-                <h2 className="font-bold text-background mt-6">{item.name}</h2>
-                <span className="text-background">{item.text}</span>
+                <h2 className="font-bold text-background mt-6">{name}</h2>
+                <span className="text-background">{text}</span>
               </CardContent>
             </Card>
           ))}
         </div>
-      </section>
-      <section
-        className="
-        flex-col 
-        flex 
-        justify-center 
-        items-start 
-        gap-4
-        text-foreground/80
-        p-20"
-      >
-        <h2
-          className="
-        text-[2.4rem] 
-        font-bold 
-        flex 
-        items-center 
-        gap-4"
-        >
-          Porque Safehaven ?
-        </h2>
-      </section>
+      </SectionBlock>
+      <SectionBlock title={"Porque Safehaven ?"}>
+        <div className="relative flex flex-wrap w-[85%] mt-12 px-10 mx-auto">
+          <ul className="space-y-5 flex flex-col w-[60%] shadow-2xl rounded-xl py-10 px-10">
+            {dataList.map(({ icon, name, text }, index) => (
+              <List key={index} icon={icon} title={name} paragraph={text} />
+            ))}
+          </ul>
+          <figure className="w-[40%]">
+            <img src="./secondaryImage.svg" alt="" className="w-[22rem] h-full mx-auto" />
+          </figure>
+        </div>
+        
+      </SectionBlock>
     </>
   );
 }
