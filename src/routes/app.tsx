@@ -1,8 +1,8 @@
-import AppLayout from "@/layouts/AppLayout";
-import { TabsTable } from "@/modules/admin/components/TabsTable";
-import { Request } from "@/modules/request/pages/Request";
-import Services from "@/modules/service/pages/Services";
-import Home from "@/pages/Home";
+import AppLayout from "@/components/AppLayout";
+import Home from "@/Pages/Home";
+import { Request } from "@/Pages/request/pages/Request";
+import Services from "@/Pages/service/pages/Services";
+
 
 
 const appRoutes = [
@@ -31,7 +31,11 @@ const appRoutes = [
           },
           {
             path:"/admin",
-            element: <TabsTable/>
+            element: <div>Admin</div>
+          },
+          {
+            path: "*",
+            element: <div>Not found</div>
           }
         ]
     }   

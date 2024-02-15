@@ -1,5 +1,3 @@
-interface Service {}
-
 interface Employee {
   id: number;
   name: string;
@@ -8,5 +6,3 @@ interface Employee {
   cellphone: string;
   email:string;
 }
-
-interface Request {}
