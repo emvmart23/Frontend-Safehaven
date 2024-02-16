@@ -9,7 +9,11 @@ import {
 import { LogoSafehaven } from "@/components/Icons";
 import RegisterForm from "../../forms/RegisterForm";
 
-export function RegisterActions() {
+interface Props {
+  setIsOpen: (value: boolean) => void
+}
+
+export function RegisterActions({ setIsOpen }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -17,7 +21,7 @@ export function RegisterActions() {
           Registrate
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[470px]">
+      <DialogContent onCloseAutoFocus={() => setIsOpen(false)} className="sm:max-w-[470px]">
         <DialogHeader className="h-[11rem]">
           <DialogTitle className="text-foreground text-[1.6rem]">
             Registrarse

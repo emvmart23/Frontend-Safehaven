@@ -19,7 +19,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
 import { z } from "zod";
 
 interface Props {
@@ -44,8 +43,11 @@ function LoginForm({ setIsOpen }: Props) {
     try {
       const { data } = await axios.post(import.meta.env.VITE_API_URL + "/login", values);
       if (data.access) {
-        dispatch(login({ ...data }));
-        toast({ title: "Listo" })
+        dispatch(login({ ...data }))
+        toast({
+          description: "Listo",
+          variant: "destructive"
+        })
       }
       setIsOpen(false)
     } catch (error: any) {

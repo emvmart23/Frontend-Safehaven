@@ -7,6 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
+import { useAuth } from "@/hooks/useAuth";
 import { LoginActions } from "@/Pages/auth/components/UserActions/LoginAction";
 import { RegisterActions } from "@/Pages/auth/components/UserActions/RegisterAction";
 import { LogIn } from "lucide-react";
@@ -19,6 +20,7 @@ interface Props {
 
 function UserDropDown({ className, text }: Props) {
   const [isOpen, setIsOpen] = useState(false)
+  const { isAutheticated } = useAuth()
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
@@ -37,10 +39,24 @@ function UserDropDown({ className, text }: Props) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup>
-          <LoginActions setIsOpen={setIsOpen} />
-        </DropdownMenuRadioGroup>
-        <RegisterActions/>
+        {
+          isAutheticated ? (
+            <>
+              <Button>
+                Perfil
+              </Button>
+              <Button>
+                Cerrar sesion 
+              </Button>
+            </>
+          ) : (
+            <>
+              <LoginActions setIsOpen={setIsOpen} />
+              <RegisterActions setIsOpen={setIsOpen} />
+            </>
+          )
+        }
+
       </DropdownMenuContent>
     </DropdownMenu>
   );
