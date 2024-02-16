@@ -2,20 +2,24 @@ import { Check } from "lucide-react";
 
 export const data = [
     {
-      name: "title 1",
-      text: "dsdsdsdsdsdsds",
+      name: "Cerrajero",
+      text: "Servicio  para solucionar cualquier problema con cerraduras y brindar seguridad.",
+      img:"./cerrajeria.svg"
     },
     {
-      name: "title 1",
-      text: "dsdsdsdsdsdsds",
+      name:"Plomero",
+      text: "Servicio para instalaciones, reparaciones y mantenimiento de sistemas de fontanería.",
+      img: "./plomero.svg"
     },
     {
-      name: "title 1",
-      text: "dsdsdsdsdsdsds",
+      name:"Electricista",
+      text: "Servicio para instalaciones, reparaciones y mantenimiento eléctrico.",
+      img: "./electricista.svg"
     },
     {
-      name: "title 1",
-      text: "dsdsdsdsdsdsds",
+      name:"Jardinero",
+      text: "Servicio para instalaciones, reparaciones y mantenimiento eléctrico",
+      img: "./electricista.svg"
     },
   ];
   
