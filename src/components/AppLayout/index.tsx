@@ -5,6 +5,8 @@ import { Separator } from "@/components/ui/Separator";
 import { AlignJustify } from "lucide-react";
 import { Outlet } from "react-router-dom";
 import { Toggle } from "@/common/components/index";
+import { Toaster } from "../ui/Toaster";
+import { Suspense } from "react";
 
 function AppLayout() {
   return (
@@ -41,8 +43,11 @@ function AppLayout() {
           min-w-[320px]
         "
       >
-        <Outlet />
+        <Suspense fallback={<>...Loading</>}>
+          <Outlet />
+        </Suspense>
       </div>
+      <Toaster/>
       <TailwindIndicator />
     </div>
   );

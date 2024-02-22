@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Buttom";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { CaretSortIcon } from "@radix-ui/react-icons";
 import { Input } from "@/components/ui/Input";
@@ -28,10 +28,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
-import { GoogleIcon } from "@/components/Icons";
-import { useState } from "react";
 import { api } from "@/service/api";
 import { toast } from "@/hooks/useToast";
+import { ScrollArea } from "@/components/ui/ScrollArea";
 
 
 const languages = [
@@ -42,9 +41,11 @@ const languages = [
   { label: "Villa maria del triunfo", value: "5" },
 ] as const;
 
-function RegisterForm() {
-  const [isPending, setIsPending] = useState(false)
+interface Props {
+  setIsPending: (value: boolean) => void
+}
 
+function RegisterForm({ setIsPending }: Props) {
   const form = useForm<z.infer<typeof UserSchema>>({
     resolver: zodResolver(UserSchema),
     defaultValues: {
@@ -78,116 +79,111 @@ function RegisterForm() {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="lastname"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Apellido</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Correo electronico</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="location"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Distrito</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
+    <ScrollArea className="max-h-[350px] pr-2 mb-2">
+      <Form {...form}>
+        <form id="register-auth-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-[99%] p-[0.3rem]">
+          <div className="flex justify-between gap-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nombres</FormLabel>
                   <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-[200px] justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? languages.find((language) => language.value === field.value)?.label : "Selecciona un distrito"}
-                      <CaretSortIcon className="ml-2 h-4 w-full shrink-0 opacity-50" />
-                    </Button>
+                    <Input placeholder="" {...field} />
                   </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                  <Command>
-                    <CommandInput
-                      placeholder="Search framework..."
-                      className="h-9"
-                    />
-                    <CommandEmpty>No framework found.</CommandEmpty>
-                    <CommandGroup>
-                      {languages.map((language) => (
-                        <CommandItem
-                          value={language.label}
-                          key={language.value}
-                          onSelect={() => {
-                            form.setValue("location", language.value);
-                          }}
-                        >
-                          {language.label}
-                          <CheckIcon
-                            className={cn(
-                              "ml-auto h-4 w-4",
-                              language.value === field.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <InputPassword form={form} name={"password"} />
-
-        <div className="space-y-2 w-full">
-          <Button type="submit" className="w-full h-[2.7rem]" disabled={isPending}>
-            Registrarse
-          </Button>
-          <Button type="submit" className="w-full flex gap-2 h-[2.7rem]">
-            <GoogleIcon /> Iniciar sesion con google
-          </Button>
-        </div>
-      </form>
-    </Form>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastname"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Apellidos</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Correo electronico</FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Distrito</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        className={cn(
+                          "w-[200px] justify-between",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value ? languages.find((language) => language.value === field.value)?.label : "Selecciona un distrito"}
+                        <CaretSortIcon className="ml-2 h-4 w-full shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[200px] p-0">
+                    <Command>
+                      <CommandInput
+                        placeholder="Search framework..."
+                        className="h-9"
+                      />
+                      <CommandEmpty>No framework found.</CommandEmpty>
+                      <CommandGroup>
+                        {languages.map((language) => (
+                          <CommandItem
+                            value={language.label}
+                            key={language.value}
+                            onSelect={() => {
+                              form.setValue("location", language.value);
+                            }}
+                          >
+                            {language.label}
+                            <CheckIcon
+                              className={cn(
+                                "ml-auto h-4 w-4",
+                                language.value === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <InputPassword form={form} name={"password"} />
+        </form>
+      </Form>
+    </ScrollArea>
   );
 }
 export default RegisterForm;

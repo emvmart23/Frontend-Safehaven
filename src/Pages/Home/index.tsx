@@ -1,10 +1,20 @@
 import { HeaderImageWrapper, List, SectionBlock } from "@/common/components";
 import { AnimatedParagraph } from "@/components";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carrousel";
 import { data, dataList } from "@/data/dataHome";
 import { Cog, Star } from "lucide-react";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay"
+
+const Images = [
+  { id: 1, alt: "imagen1" },
+  { id: 2, alt: "imagen2" },
+  { id: 3, alt: "imagen3" }
+]
 
 export default function Home() {
+  const plugin = useRef(Autoplay({ delay: 2000, startOnIteraction: true }))
   return (
     <>
       <HeaderImageWrapper
@@ -12,15 +22,23 @@ export default function Home() {
         title="Safehaven"
         paragraph="Transforma tu experiencia de contratación de servicios a domicilio en Lima con nuestra plataforma"
       >
-        <img
-          src="./mainImage.svg"
-          alt=""
-          className="
-            object-cover 
-            w-full 
-            h-full 
-            rounded-2xl"
-        />
+        <Carousel plugins={[plugin.current]} className="shadow-2xl h-full w-full rounded-2xl">
+          <CarouselContent>
+            {Images.map((img) => (
+              <CarouselItem key={img.id}>
+                <img
+                  src={`/main/main-${img.id}.svg`}
+                  alt=""
+                  className="
+                    object-cover 
+                    w-full 
+                    h-full 
+                    rounded-2xl"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </HeaderImageWrapper>
       <SectionBlock
         title={"Lo más Popular "}

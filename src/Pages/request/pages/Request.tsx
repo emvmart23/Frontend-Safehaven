@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/TextArea";
-import { Button } from "@/components/ui/Buttom";
+import { Button } from "@/components/ui/Button";
 import { Link } from "react-router-dom";
 import requestSchema from "@/lib/validators/requestScheme";
 

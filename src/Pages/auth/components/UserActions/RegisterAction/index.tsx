@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Buttom";
+import { Button } from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
@@ -6,18 +6,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
-import { LogoSafehaven } from "@/components/Icons";
+import { GoogleIcon, LogoSafehaven } from "@/components/Icons";
 import RegisterForm from "../../forms/RegisterForm";
+import { useState } from "react";
 
 interface Props {
   setIsOpen: (value: boolean) => void
 }
 
 export function RegisterActions({ setIsOpen }: Props) {
+  const [isPending, setIsPending] = useState(false)
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full inline-block text-start" variant="ghost">
+        <Button className="w-full inline-block text-start">
           Registrate
         </Button>
       </DialogTrigger>
@@ -28,7 +30,15 @@ export function RegisterActions({ setIsOpen }: Props) {
           </DialogTitle>
           <LogoSafehaven className="h-full w-[6rem] mx-auto py-5" />
         </DialogHeader>
-        <RegisterForm />
+        <RegisterForm setIsPending={setIsPending}/>
+        <div className="space-y-2 w-full">
+          <Button form="register-auth-form" type="submit" className="w-full h-[2.7rem]" disabled={isPending}>
+            Registrarse
+          </Button>
+          <Button type="submit" className="w-full flex gap-2 h-[2.7rem]">
+            <GoogleIcon /> Registrarse con google
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );

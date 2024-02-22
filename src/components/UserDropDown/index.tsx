@@ -1,16 +1,20 @@
-import { Button } from "@/components/ui/Buttom";
+import { Button } from "@/components/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
+  //DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
 import { useAuth } from "@/hooks/useAuth";
 import { LoginActions } from "@/Pages/auth/components/UserActions/LoginAction";
 import { RegisterActions } from "@/Pages/auth/components/UserActions/RegisterAction";
+import { logout } from "@/store/slices";
+import { useAppDispatch } from "@/store/store";
 import { LogIn } from "lucide-react";
 import { useState } from "react";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/AlertDialog";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   className?: string;
@@ -19,7 +23,16 @@ interface Props {
 
 function UserDropDown({ className, text }: Props) {
   const [isOpen, setIsOpen] = useState(false)
-  const { isAutheticated } = useAuth()
+  const { user } = useAuth()
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const buttonHandlerLogout = () => {
+    dispatch(logout())
+    setIsOpen(false)
+    navigate('/')
+  }
+
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
@@ -30,24 +43,32 @@ function UserDropDown({ className, text }: Props) {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-56 relative left-[12.5rem] bottom-[4rem]"
-
       >
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Safehaven</p>
-          </div>
-        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         {
-          isAutheticated ? (
-            <>
+          user ? (
+            <div className="flex-col flex">
               <Button>
                 Perfil
               </Button>
-              <Button>
-                Cerrar sesion 
-              </Button>
-            </>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline">Salir</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Cerrar sesión</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      ¿Seguro que deseas cerrar sesión? 
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction onClick={buttonHandlerLogout}>Salir</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
           ) : (
             <>
               <LoginActions setIsOpen={setIsOpen} />

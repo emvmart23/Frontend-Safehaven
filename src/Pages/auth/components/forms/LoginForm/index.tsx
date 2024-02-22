@@ -1,6 +1,6 @@
 import { GoogleIcon } from "@/components/Icons";
 import { InputPassword } from "@/components/index";
-import { Button } from "@/components/ui/Buttom";
+import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/ui/CheckBox";
 import {
   Form,
@@ -11,12 +11,14 @@ import {
   FormMessage,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
+import { useAuth } from "@/hooks/useAuth";
 import { toast } from "@/hooks/useToast";
 import { LoginSchema } from "@/lib/validators/auth";
 import { login } from "@/store/slices";
 import { useAppDispatch } from "@/store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -28,7 +30,7 @@ interface Props {
 function LoginForm({ setIsOpen }: Props) {
   const [isPending, setIsPending] = useState(false)
   const dispatch = useAppDispatch();
-
+  const { user } = useAuth()
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -45,8 +47,7 @@ function LoginForm({ setIsOpen }: Props) {
       if (data.access) {
         dispatch(login({ ...data }))
         toast({
-          description: "Listo",
-          variant: "destructive"
+          description: "Bienvenido " + user?.name,
         })
       }
       setIsOpen(false)
@@ -84,13 +85,14 @@ function LoginForm({ setIsOpen }: Props) {
                   Correo electronico
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="Ingresa tu correo" {...field} />
+                  <Input className="text-foreground" placeholder="Ingresa tu correo" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <InputPassword
+            className="text-foreground"
             placeholder="Ingresa tu contraseña"
             form={form}
             name={"password"}
@@ -108,17 +110,19 @@ function LoginForm({ setIsOpen }: Props) {
                 />
               </FormControl>
               <div className="space-y-1 leading-none">
-                <FormLabel className="text-foreground">Recordarme</FormLabel>
+                <FormLabel className="text-foreground">Recuérdame</FormLabel>
               </div>
             </FormItem>
           )}
         />
 
         <div className="space-y-2 w-full">
-          <Button onClick={() => {
-            toast({ title: "Listo" })
-          }} form="id-login" type="submit" className="w-full h-[2.7rem]" disabled={isPending}>
-            Iniciar sesion
+          <Button form="id-login" type="submit" className="w-full h-[2.7rem]" disabled={isPending}>
+            {isPending ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
+            ) : (
+              <span>Iniciar sesion</span>
+            )}
           </Button>
           <Button type="submit" className="w-full flex gap-2 h-[2.7rem]">
             <GoogleIcon /> Iniciar sesion con google

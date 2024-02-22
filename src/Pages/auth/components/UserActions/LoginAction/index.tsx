@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Buttom";
+import { Button } from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
@@ -23,7 +23,7 @@ export function LoginActions({ setIsOpen }: Props) {
       </DialogTrigger>
       <DialogContent onCloseAutoFocus={() => setIsOpen(false)} className="sm:max-w-[470px]">
         <DialogHeader className="h-[11rem]">
-          <DialogTitle className="text-foreground text-[1.6rem]">
+          <DialogTitle className="text-[1.6rem]">
             Iniciar sesion
           </DialogTitle>
           <LogoSafehaven className="h-full w-[6rem] mx-auto py-5" />

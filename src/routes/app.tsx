@@ -1,9 +1,8 @@
-import AppLayout from "@/components/AppLayout";
-import Home from "@/Pages/Home";
 import { Request } from "@/Pages/request/pages/Request";
-import Services from "@/Pages/service/pages/Services";
-
-
+import Home from "@/Pages/Home/index";
+import { lazy } from "react";
+const Services = lazy(() => import("@/Pages/service/pages/Services"))
+const AppLayout = lazy(() => import("@/components/AppLayout/index"))
 
 const appRoutes = [
     {

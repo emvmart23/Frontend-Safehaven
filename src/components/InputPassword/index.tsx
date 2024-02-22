@@ -24,7 +24,7 @@ function InputPassword({ form, placeholder, className, name }: Props) {
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-foreground">Contraseña</FormLabel>
+          <FormLabel >Contraseña</FormLabel>
           <FormControl>
             <div className="relative">
               <Input
@@ -38,7 +38,7 @@ function InputPassword({ form, placeholder, className, name }: Props) {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <Eye className=""/> : <EyeOff  className=""/>}
+                {showPassword ? <Eye className="text-muted-foreground"/> : <EyeOff  className="text-muted-foreground"/>}
               </button>
             </div>
           </FormControl>
