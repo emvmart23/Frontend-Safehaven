@@ -1,7 +1,6 @@
 import { AnimatedTitle } from "@/components";
 import { cn } from "@/lib/utils";
 
-
 interface Props {
   title: string;
   className?: string;
@@ -29,13 +28,12 @@ function SectionBlock({ title, children, className, icon }: Props) {
         justify-center 
         items-center 
         gap-2
-        
       "
       >
         <AnimatedTitle
           text={title}
           className="
-            text-[2.2rem] text-foreground font-semibold
+            text-[1.4rem] md:text-[2.2rem] text-foreground font-semibold
             " />
           {icon}
       </div>

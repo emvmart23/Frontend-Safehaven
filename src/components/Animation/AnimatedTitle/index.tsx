@@ -10,13 +10,13 @@ interface Props {
 const TitleAnimation = {
   hidden: {
     opacity: 0,
-    y: `0.30em`,
+    y: `0.50em`,
   },
   visible: {
     opacity: 1,
     y: `0em`,
     transition: {
-      duration: 1,
+      duration: 2,
       ease: [0.2, 0.65, 0.3, 0.9],
     },
   },

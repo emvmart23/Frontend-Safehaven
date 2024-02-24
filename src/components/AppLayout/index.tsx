@@ -4,7 +4,7 @@ import { UserDropDown, TailwindIndicator } from "@/components/index";
 import { Separator } from "@/components/ui/Separator";
 import { AlignJustify } from "lucide-react";
 import { Outlet } from "react-router-dom";
-import { Toggle } from "@/common/components/index";
+import { ProgressBar, Toggle } from "@/common/components/index";
 import { Toaster } from "../ui/Toaster";
 import { Suspense } from "react";
 
@@ -40,10 +40,10 @@ function AppLayout() {
           pl-[1rem]
           lg:pl-[16rem]
           pr-[1rem]
-          min-w-[320px]
+          min-w-[420px]
         "
       >
-        <Suspense fallback={<>...Loading</>}>
+        <Suspense fallback={<ProgressBar/>}>
           <Outlet />
         </Suspense>
       </div>

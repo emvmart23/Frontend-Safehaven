@@ -19,10 +19,10 @@ function HeaderImageWrapper({
       <div
         className={`${className} flex-col flex justify-center h-2/6 xl:h-full w-full rounded-2xl p-10 md:p-14 shadow-2xl`}
       >
-        <AnimatedTitle text={title} className="text-[1.8rem] md:text-[4rem] text-foreground font-medium" />
+        <AnimatedTitle text={title} className="text-[1.8rem] md:text-[3rem] lg:text-[4rem]  text-foreground font-medium" />
         <AnimatedParagraph text={paragraph} className="md:text-[1.4rem] text-foreground/80" />
       </div>
-      <div>{children}</div>
+      <>{children}</>
     </header>
   );
 }

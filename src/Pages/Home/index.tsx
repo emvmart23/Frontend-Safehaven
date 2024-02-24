@@ -8,13 +8,13 @@ import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay"
 
 const Images = [
-  { id: 1, alt: "imagen1" },
-  { id: 2, alt: "imagen2" },
-  { id: 3, alt: "imagen3" }
+  { id: 1, alt: "Cerrajero" },
+  { id: 2, alt: "Electricista" },
+  { id: 3, alt: "Plomero" }
 ]
 
 export default function Home() {
-  const plugin = useRef(Autoplay({ delay: 2000, startOnIteraction: true }))
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }))
   return (
     <>
       <HeaderImageWrapper
@@ -22,18 +22,14 @@ export default function Home() {
         title="Safehaven"
         paragraph="Transforma tu experiencia de contratación de servicios a domicilio en Lima con nuestra plataforma"
       >
-        <Carousel plugins={[plugin.current]} className="shadow-2xl h-full w-full rounded-2xl">
+        <Carousel opts={{ loop: false }} plugins={[plugin.current]} className="shadow-2xl w-full rounded-2xl ">
           <CarouselContent>
-            {Images.map((img) => (
-              <CarouselItem key={img.id}>
+            {Images.map(({ id, alt }) => (
+              <CarouselItem key={id} className="w-full h-full">
                 <img
-                  src={`/main/main-${img.id}.svg`}
-                  alt=""
-                  className="
-                    object-cover 
-                    w-full 
-                    h-full 
-                    rounded-2xl"
+                  src={`/main/main-${id}.svg`}
+                  alt={alt}
+                  className="rounded-2xl w-full h-[30rem] object-cover"
                 />
               </CarouselItem>
             ))}
@@ -43,14 +39,15 @@ export default function Home() {
       <SectionBlock
         title={"Lo más Popular "}
         icon={<Star className="w-8 h-8" />}
-        className="flex-col justify-center items-center"
+        className="flex-col justify-center items-center mt-[2rem]"
       >
         <AnimatedParagraph
           className="
           mb-[3rem]
           w-[40%] 
           min-w-[320px] 
-          text-center 
+          text-center
+          text-[0.9rem] 
           md:text-[1rem]
           text-foreground/90
           "
@@ -177,11 +174,11 @@ export default function Home() {
           ))}
         </div>
       </SectionBlock>
-      <SectionBlock title={"Porque Safehaven ?"} className="items-center bg-foreground/10 rounded-xl">
-        <div className="relative flex xl:w-[85%] mt-12 px-6 mx-auto">
-          <ul className="space-y-5 xl:flex flex-col justify-center md:items-center bg-background/80 xl:w-[60%] min-w-[320px] shadow-2xl rounded-xl py-10 px-10">
+      <SectionBlock title={"Porque Safehaven ?"} className="items-center bg-foreground/10 rounded-xl p-10">
+        <div className="relative flex xl:w-[85%] mt-12 mx-auto">
+          <ul className="space-y-7 xl:flex flex-col justify-center md:items-center bg-background/80 xl:w-[60%] shadow-2xl rounded-xl py-[2rem] md:py-[4rem]">
             {dataList.map(({ icon, name, text }, index) => (
-              <List key={index} icon={icon} title={name} paragraph={text} />
+              <List key={index} icon={icon} title={name} paragraph={text} className="mx-auto" />
             ))}
           </ul>
           <figure className="w-[40%] hidden xl:block">

@@ -9,5 +9,4 @@ export const UserSchema = z.object({
   lastname: z.string().min(1, { message: requiredErrorMsg}).trim(),
   email: z.string().min(1, { message: "Se requiere un correo electronico"}).email("Este no es un correo electrónico válido").trim(),
   password: z.string().min(1, { message: requiredErrorMsg }),
-  location: z.string().min(1, { message: "Selecciona un distrito" }),
 });

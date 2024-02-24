@@ -1,7 +1,7 @@
 import { List } from '@/common/components/index';
 import { dataList, dataService } from "../data"
 import ReactPlayer from 'react-player'
-import { HoverEffect } from '@/components/ui/card-hover-effect';
+import { CardHoverEffect } from '../components/index';
 
 function Services() {
 
@@ -23,8 +23,8 @@ function Services() {
             ))}
         </ul>
       </div>
-      <section className="px-20 py-10 max-w-auto mx-auto">
-      <HoverEffect items={dataService} />
+      <section className="p-20 max-w-auto mx-auto">
+      <CardHoverEffect items={dataService} />
       </section>
     </>
   );

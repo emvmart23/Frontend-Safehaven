@@ -106,6 +106,6 @@ export const LogoSafehaven = ({ className }: Props) => {
         fill={color}
       />
     </svg>
-      
+
   );
 };
