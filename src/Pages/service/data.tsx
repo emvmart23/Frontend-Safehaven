@@ -1,20 +1,18 @@
-import One from "../../assets/imgNumber/one.svg";
-import Two from "../../assets/imgNumber/two.svg";
-import Three from "../../assets/imgNumber/three.svg";
+import { NumberOneIcon, NumberTwoIcon, NumberThreeIcon } from "@/components/Icons";
 
 export const dataList = [
   {
-    icon: <img src={One} />,
+    icon: NumberOneIcon,
     name: "Equipo Experimentado",
     text: "Contamos con un equipo experimentado y capacitado para brindarte un servicio confiable y de calidad en tu hogar.",
   },
   {
-    icon: <img src={Two} />,
+    icon: NumberTwoIcon,
     name: "Variedad de Servicios",
     text: "Cubrimos una amplia gama de servicios a domicilio, desde reparaciones generales hasta instalaciones.",
   },
   {
-    icon: <img src={Three} />,
+    icon: NumberThreeIcon,
     name: "Atención Rápida y Eficiente",
     text: "Respondemos rápidamente a tus solicitudes y brindamos soluciones eficientes para resolver tus problemas en el menor tiempo posible.",
   },
