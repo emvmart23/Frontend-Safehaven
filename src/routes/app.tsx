@@ -5,12 +5,15 @@ import { lazy } from "react";
 const Services = lazy(() => import("@/Pages/service/pages/Services"))
 const AppLayout = lazy(() => import("@/components/AppLayout/index"))
 
+// implement guard for this
 
 const appRoutes = [
   {
     path: "/",
     element:
+    //<ProtectedRoute>
       <AppLayout />,
+    //</ProtectedRoute>
     children: [
       {
         path: "/",
