@@ -31,7 +31,7 @@ const HoverEffect = ({ items }: Items) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10">
+    <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3  py-10">
       {items.map((item, idx) => (
         <Link to={item?.link} key={item?.link}>
           <div

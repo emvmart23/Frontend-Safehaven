@@ -1,17 +1,13 @@
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import React from "react";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./context/theme.tsx";
-import { Provider } from 'react-redux'
-import { store } from "./store/store.ts";
+import App from "./App.tsx";
+import ReactDOM from "react-dom/client";
+import Providers from "./common/components/Providers/index.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ThemeProvider>
-  </BrowserRouter>
+  <React.StrictMode>
+    <Providers>
+      <App />
+    </Providers>
+  </React.StrictMode>
 );

@@ -1,4 +1,4 @@
-import { getCookie, removeCookie, setCookie } from "@/lib/utils";
+import { getCookie, removeCookie, setCookie } from "@/tools";
 import axios, { AxiosRequestConfig } from "axios";
 
 export const api = axios.create({

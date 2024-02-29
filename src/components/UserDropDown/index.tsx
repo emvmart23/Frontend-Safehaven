@@ -6,7 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { useAuth } from "@/hooks/useAuth";
+import useAuth from "@/hooks/useAuth";
 import { LoginActions } from "@/Pages/auth/components/UserActions/LoginAction";
 import { RegisterActions } from "@/Pages/auth/components/UserActions/RegisterAction";
 import { logout } from "@/store/slices";
@@ -15,6 +15,9 @@ import { LogIn } from "lucide-react";
 import { useState } from "react";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/AlertDialog";
 import { useNavigate } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
+import { getInitials } from "@/tools/getInitials";
+
 
 interface Props {
   className?: string;
@@ -36,10 +39,23 @@ function UserDropDown({ className, text }: Props) {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="outline" className={`${className} `}>
-          <span className="text-foreground/80">{text}</span>
-          <LogIn className="text-foreground/70 w-6 h-6" />
-        </Button>
+        {user ? (
+          <Button  size="icon" variant="outline" className={`${className} `}>
+            <Avatar>
+              <AvatarImage>
+                                  
+              </AvatarImage>
+              <AvatarFallback>
+                {getInitials(user?.name)}
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        ) : (
+          <Button size="icon" variant="outline" className={`${className} `}>
+            <span className="text-foreground/80">{text}</span>
+            <LogIn className="text-foreground/70 w-6 h-6" />
+          </Button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-56 relative left-[12.5rem] bottom-[4rem]"
@@ -59,7 +75,7 @@ function UserDropDown({ className, text }: Props) {
                   <AlertDialogHeader>
                     <AlertDialogTitle>Cerrar sesión</AlertDialogTitle>
                     <AlertDialogDescription>
-                      ¿Seguro que deseas cerrar sesión? 
+                      ¿Seguro que deseas cerrar sesión?
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>

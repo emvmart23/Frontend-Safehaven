@@ -1,18 +1,19 @@
-import { NumberOneIcon, NumberTwoIcon, NumberThreeIcon } from "@/components/Icons";
+import { NumberOneIcon, NumberThreeIcon, NumberTwoIcon } from "@/components/Icons";
+
 
 export const dataList = [
   {
-    icon: NumberOneIcon,
+    icon: <NumberOneIcon/>,
     name: "Equipo Experimentado",
     text: "Contamos con un equipo experimentado y capacitado para brindarte un servicio confiable y de calidad en tu hogar.",
   },
   {
-    icon: NumberTwoIcon,
+    icon: <NumberTwoIcon/>,
     name: "Variedad de Servicios",
     text: "Cubrimos una amplia gama de servicios a domicilio, desde reparaciones generales hasta instalaciones.",
   },
   {
-    icon: NumberThreeIcon,
+    icon: <NumberThreeIcon/>,
     name: "Atención Rápida y Eficiente",
     text: "Respondemos rápidamente a tus solicitudes y brindamos soluciones eficientes para resolver tus problemas en el menor tiempo posible.",
   },

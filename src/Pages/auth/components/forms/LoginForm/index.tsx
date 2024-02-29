@@ -11,7 +11,8 @@ import {
   FormMessage,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
-import { useAuth } from "@/hooks/useAuth";
+import useAuth from "@/hooks/useAuth";
+import useGoogleAuth from "@/hooks/useGoogleAuth";
 import { toast } from "@/hooks/useToast";
 import { LoginSchema } from "@/lib/validators/auth";
 import { login } from "@/store/slices";
@@ -29,9 +30,10 @@ interface Props {
 
 function LoginForm({ setIsOpen }: Props) {
   const [isPending, setIsPending] = useState(false)
+  const { googleLogin } = useGoogleAuth()
   const dispatch = useAppDispatch();
   const { user } = useAuth()
-  
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -125,8 +127,11 @@ function LoginForm({ setIsOpen }: Props) {
               <span>Iniciar sesion</span>
             )}
           </Button>
-          <Button type="submit" className="w-full flex gap-2 h-[2.7rem]">
-            <GoogleIcon /> Iniciar sesion con google
+          <Button className="w-full flex gap-2 h-[2.7rem]" onClick={(e) => {
+            googleLogin()
+            e.preventDefault()
+          }}>
+            <GoogleIcon />Iniciar sesion con google
           </Button>
         </div>
       </form>

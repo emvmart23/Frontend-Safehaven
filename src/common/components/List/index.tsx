@@ -1,5 +1,5 @@
 import { AnimatedParagraph, AnimatedTitle } from "@/components";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 interface Props {
   icon: React.ReactNode;
