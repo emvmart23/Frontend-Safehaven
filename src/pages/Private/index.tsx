@@ -1,0 +1,1 @@
+export { default as DetailsUser} from "./profile/pages/DetailsUser"
