@@ -3,12 +3,19 @@ import { LogoSafehavenExpanded } from "@/components/Icons";
 import { UserDropDown, TailwindIndicator } from "@/components/index";
 import { Separator } from "@/components/ui/Separator";
 import { AlignJustify } from "lucide-react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { ProgressBar, Toggle } from "@/common/components/index";
 import { Toaster } from "../ui/Toaster";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
+import { PrivateRoutes } from "@/routes/guards/links";
+
+const Footer = lazy(() => import("../Footer/index"))
 
 function AppLayout() {
+  const { pathname } = useLocation()
+
+  const showFooter = `/privado/${Object.values(PrivateRoutes).find((e) => `/privado/${e}` === pathname)}`
+
   return (
     <div className="bg-background/95 w-full h-full flex-col min-w-[320px]">
       <nav className="flex bg-background/95 border-b h-16 p-6 lg:hidden">
@@ -21,7 +28,7 @@ function AppLayout() {
         </div>
       </nav>
       <div
-        className={`w-[15rem] h-full fixed top-0 border-r border-foreground/20 shadow-2xl hidden lg:block`}
+        className={`w-[15rem] h-full fixed top-0 border-r border-foreground/20 shadow-2xl hidden lg:block z-50`}
       >
         <LogoSafehavenExpanded className="w-full h-[5rem] mx-auto p-4" />
         <Sidebar />
@@ -40,14 +47,16 @@ function AppLayout() {
           pl-[1rem]
           lg:pl-[16rem]
           pr-[1rem]
-          min-w-[420px]
+          min-w-[320px]
+          relative
         "
       >
-        <Suspense fallback={<ProgressBar/>}>
+        <Suspense fallback={<ProgressBar />}>
           <Outlet />
+          {!(showFooter === pathname) ? <Footer /> : null}
         </Suspense>
       </div>
-      <Toaster/>
+      <Toaster />
       <TailwindIndicator />
     </div>
   );

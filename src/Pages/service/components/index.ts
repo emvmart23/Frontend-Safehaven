@@ -1,1 +1,0 @@
-export { default as CardHoverEffect } from "./CardHoverEffect/index"

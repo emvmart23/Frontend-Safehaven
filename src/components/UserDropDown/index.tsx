@@ -7,8 +7,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
 import useAuth from "@/hooks/useAuth";
-import { LoginActions } from "@/Pages/auth/components/UserActions/LoginAction";
-import { RegisterActions } from "@/Pages/auth/components/UserActions/RegisterAction";
+import { LoginActions } from "@/pages/Public/auth/components/UserActions/LoginAction";
+
 import { logout } from "@/store/slices";
 import { useAppDispatch } from "@/store/store";
 import { LogIn } from "lucide-react";
@@ -17,6 +17,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 import { getInitials } from "@/tools/getInitials";
+import { RegisterActions } from "@/pages/Public/auth/components/UserActions/RegisterAction";
 
 
 interface Props {
@@ -45,7 +46,7 @@ function UserDropDown({ className, text }: Props) {
               <AvatarImage>
                                   
               </AvatarImage>
-              <AvatarFallback>
+              <AvatarFallback className="bg-transparent">
                 {getInitials(user?.name)}
               </AvatarFallback>
             </Avatar>
@@ -62,9 +63,13 @@ function UserDropDown({ className, text }: Props) {
       >
         <DropdownMenuSeparator />
         {
-          user ? (
+          user ? ( 
             <div className="flex-col flex">
-              <Button>
+              <Button onClick={() => {
+                //corregir el rebote de imagen de perfil
+                navigate("/privado/perfil")
+                setIsOpen(false)
+              }}>
                 Perfil
               </Button>
               <AlertDialog>

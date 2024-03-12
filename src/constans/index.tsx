@@ -8,12 +8,12 @@ const MENU_ITEMS = [
   },
   {
     name: "Servicios",
-    url: "/service",
+    url: "/servicio",
     icon: <Hammer/>,
   },
   {
     name: "Contactanos",
-    url: "/aboutus",
+    url: "/contacto",
     icon: <ServerIcon/>,
   }
 ];

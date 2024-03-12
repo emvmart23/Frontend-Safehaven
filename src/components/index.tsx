@@ -1,7 +1,0 @@
-export { default as AnimatedTitle} from "./Animation/AnimatedTitle"
-export { default as AnimatedParagraph} from "./Animation/AnimatedParagraph"
-export { default as InputPassword } from "./InputPassword/index"
-export { default as NavBar} from "./Sidebar/index"
-export { default as NavItem } from "./Sidebar/NavItem"
-export {default as TailwindIndicator} from "./TailwindIndicator/index"
-export { default as UserDropDown } from "./UserDropDown/index"

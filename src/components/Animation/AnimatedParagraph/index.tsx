@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 interface Props {
-    text: string
+    text?: string
     className?: string
 }
 
@@ -9,7 +9,7 @@ export default function AnimatedParagraph({ text, className }: Props) {
     const Paragraph = text?.split("  ");
     return (
         <>
-            {Paragraph.map((el, index) => (
+            {Paragraph?.map((el, index) => (
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

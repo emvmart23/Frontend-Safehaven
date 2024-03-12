@@ -2,9 +2,9 @@ import { AnimatedTitle } from "@/components";
 import { cn } from "@/lib/utils"
 
 interface Props {
-  title: string;
+  title?: string;
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   icon?: React.ReactNode;
 }
 

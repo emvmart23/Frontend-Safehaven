@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 
 interface Props {
   className?: string
-  text: string
+  text?: string
 }
 
 const TitleAnimation = {
@@ -41,7 +41,7 @@ export default function AnimatedTitle({ className, text }: Props) {
 
   return (
     <h1 className={className}>
-      {text.split(" ").map((character, index) => (
+      {text?.split(" ").map((character, index) => (
         <motion.span
           key={index}
           ref={ref}
