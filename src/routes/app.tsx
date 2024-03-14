@@ -1,6 +1,5 @@
 import { Route } from "react-router-dom";
 import AppLayout from "@/components/AppLayout/index";
-import Profile from "@/pages/Private/profile/pages/Profile";
 import { PrivateRoutes } from "./guards/links";
 import { AuthGuard } from "./guards/AuthGuard";
 import { RoutesWithNotFound } from "@/tools";

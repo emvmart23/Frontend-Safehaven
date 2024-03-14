@@ -53,7 +53,7 @@ function AppLayout() {
       >
         <Suspense fallback={<ProgressBar />}>
           <Outlet />
-          {!(showFooter === pathname) ? <Footer /> : null}
+          {/* {!(showFooter === pathname) ? <Footer /> : null} */}
         </Suspense>
       </div>
       <Toaster />
