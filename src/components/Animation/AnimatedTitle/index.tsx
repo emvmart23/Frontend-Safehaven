@@ -1,10 +1,16 @@
 import { useEffect } from "react";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+import { PrivateRoutes } from "@/routes/guards/links";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import useBreakpointer from "@/hooks/useBreakpointer";
 
 interface Props {
   className?: string
   text?: string
+  back?: boolean
 }
 
 const TitleAnimation = {
@@ -22,8 +28,14 @@ const TitleAnimation = {
   },
 };
 
-export default function AnimatedTitle({ className, text }: Props) {
+export default function AnimatedTitle({ className, text, back }: Props) {
+  const navigate = useNavigate()
+  const width = useBreakpointer()
   const ctrls = useAnimation()
+  
+  const handlerBackButton = () =>{
+    width > 1280 ? navigate(`/privado/${PrivateRoutes.PROFILE}`, { replace: true }) : navigate("/privado/ayuda", {replace:true})
+  }
 
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -40,19 +52,26 @@ export default function AnimatedTitle({ className, text }: Props) {
   }, [ctrls, inView])
 
   return (
-    <h1 className={className}>
-      {text?.split(" ").map((character, index) => (
-        <motion.span
-          key={index}
-          ref={ref}
-          animate={ctrls}
-          aria-hidden="true"
-          variants={TitleAnimation}
-          className="inline-block mr-2"
-        >
-          {character}
-        </motion.span>
-      ))}
-    </h1>
+    <>
+      {back ?
+        <Button onClick={handlerBackButton} variant="outline" className="border-none">
+          <ArrowLeft className="md:w-9 md:h-12" />
+        </Button>
+        : null}
+      <h1 className={className}>
+        {text?.split(" ").map((character, index) => (
+          <motion.span
+            key={index}
+            ref={ref}
+            animate={ctrls}
+            aria-hidden="true"
+            variants={TitleAnimation}
+            className="inline-block mr-2"
+          >
+            {character}
+          </motion.span>
+        ))}
+      </h1>
+    </>
   )
 }

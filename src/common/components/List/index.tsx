@@ -18,7 +18,7 @@ function List({ icon, title, paragraph, className }: Props) {
       )}
       <div className="flex-1">
         <AnimatedTitle text={title} className="text-[1.2rem] md:text-xl font-medium leading-loose text-foreground" />
-        <AnimatedParagraph text={paragraph} className="text-gray-500" />
+        <AnimatedParagraph text={paragraph} className="text-foreground/70" />
       </div>
     </li>
   );
