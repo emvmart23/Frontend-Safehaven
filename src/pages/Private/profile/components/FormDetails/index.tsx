@@ -31,7 +31,6 @@ function FormDetails() {
         }
     }
 
-    console.log(user?.family_name)
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -74,7 +73,7 @@ function FormDetails() {
                         </FormItem>
                     )}
                 />
-                {!user.sub ? (
+                {!user?.sub ? (
                     <FormField
                         control={form.control}
                         name="phone"

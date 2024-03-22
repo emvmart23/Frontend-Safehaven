@@ -5,6 +5,7 @@ import { Route } from "react-router-dom"
 import { Help } from "./help/page/Help"
 import HelpReservation from "./help/components/HelpReservation"
 import ServiceProblem from "./help/components/ServiceProblem"
+import Payment from "./help/components/Payment"
 
 const DetailsUser = lazy(() => import("./profile/pages/DetailsUser"))
 const Profile = lazy(() => import("./profile/pages/Profile"))
@@ -18,6 +19,7 @@ function Private() {
       <Route path={PrivateRoutes.HELP} element={<Help />}>
         <Route path={PrivateRoutes.SERVICE} element={<ServiceProblem />} />
         <Route path={PrivateRoutes.BOOKING} element={<HelpReservation />} />
+        <Route path={PrivateRoutes.PAYMENT} element={<Payment />} />
       </Route>
     </RoutesWithNotFound>
   )

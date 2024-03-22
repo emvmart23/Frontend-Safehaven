@@ -1,11 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/Sheet";
-import { Label } from "@/components/ui/Label";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet";
+import { useLoadScript } from "@react-google-maps/api";
+import Map from "../Map";
+
 
 interface Props {
   title: string;
@@ -33,6 +32,12 @@ const variants = {
 
 const HoverEffect = ({ items }: Items) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: import.meta.env.VITE_PUBLIC_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"]
+  })
+
+  if (!isLoaded) return <div>Loading...</div>;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3  py-10">
@@ -64,27 +69,8 @@ const HoverEffect = ({ items }: Items) => {
                 </CardDescription>
               </Card>
             </SheetTrigger>
-            <SheetContent side={"top"}>
-              <SheetHeader>
-                <SheetTitle>Usar tu ubicacion actulal</SheetTitle>
-                <SheetDescription>
-                  Make changes to your profile here. Click save when you're done.
-                </SheetDescription>
-              </SheetHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    Name
-                  </Label>
-                  <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    Username
-                  </Label>
-                  <Input id="username" value="@peduarte" className="col-span-3" />
-                </div>
-              </div>
+            <SheetContent side={"top"} className="flex flex-col justify-center items-center">
+              <Map/>
             </SheetContent>
           </div>
         </Sheet>

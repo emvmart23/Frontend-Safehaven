@@ -1,6 +1,6 @@
 import { List } from "@/common/components"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/Accordion"
-import { Button } from "@/components/ui/Button"
+import ContactSuport from "../ContactSuport"
 
 function HelpReservation() {
     return (
@@ -15,15 +15,13 @@ function HelpReservation() {
                                 <List paragraph="a) El profesional tiene su agenda ocupada por deplazamientos entre servicios" />
                                 <List paragraph="b) Estas intentando contratar con menos de 24 horas de antelación" />
                             </ul>
-                            <p className="font-semibold text-[1.2rem]">¿ Tienes alguna duda ?</p>
+                            <ContactSuport />
                         </div>
-                        <strong>Contacta con nosotros, estaremos encantados de ayudarte en lo que necesites</strong>
-                        <Button variant="link" className="w-min px-0 text-blue-500">Contacta con nosotros</Button>
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
                     <AccordionTrigger>Quiero reservar con menos de 24 horas de antelación</AccordionTrigger>
-                    <AccordionContent>
+                    <AccordionContent className="space-y-4 flex flex-col">
                         <p className="font-semibold text-foreground/70">
                             Para la organización de los profesionales, por defecto, no está habilitada la
                             reserva directa con menos de 24h de antelación.
@@ -32,11 +30,12 @@ function HelpReservation() {
                             necestias, pídele por el chat que te envíe una Propuesta de servicio. Con él
                             podrás contratar sin el límite de 24h.
                         </p>
+                        <ContactSuport />
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
                     <AccordionTrigger>No encuentro el servicio que necesito</AccordionTrigger>
-                    <AccordionContent className="space-y-3 font-semibold">
+                    <AccordionContent className="space-y-4 flex flex-col">
                         <p>Posibles causas:</p>
                         <span>Servicio no incluido en las tablas de precios de los trabajadores:</span>
                         <p className="text-foreground/70">
@@ -44,16 +43,20 @@ function HelpReservation() {
                             Solicita por el chat al profesional que te envíe una Propuesta para poder
                             contratar el servicio a tu medida.
                         </p>
+                        <ContactSuport />
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
                     <AccordionTrigger>Ayuda para encontar mi trabajador ideal</AccordionTrigger>
-                    <AccordionContent className="space-y-3 font-semibold">
+                    <AccordionContent className="space-y-4 flex flex-col font-semibold">
                         <p>Si quieres que alguien del equipo de Webel te ayude a encontrar tu profesional ideal, </p>
-                        <List paragraph="Descripcion detallada del servicio" />
-                        <List paragraph="Horario en el que te gustaria recibirlo" />
-                        <List paragraph="Dirección" />
-                        <p></p>
+                        <ul>
+                            <List paragraph="- Descripcion detallada del servicio" />
+                            <List paragraph="- Horario en el que te gustaria recibirlo" />
+                            <List paragraph="- Dirección" />
+                        </ul>
+                        <p>Unos de nuestros tecnicos se pondrá en contacto contigo lo antes posible</p>
+                        <ContactSuport />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>

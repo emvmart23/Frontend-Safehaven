@@ -4,7 +4,8 @@ export const PrivateRoutes = {
     DETAILS: 'detalles-perfil',
     HELP: 'ayuda',
     BOOKING: 'reserva',
-    SERVICE: 'service'
+    SERVICE: 'servicio',
+    PAYMENT: 'pagos'
 }
 
 export const PublicRoutes = {

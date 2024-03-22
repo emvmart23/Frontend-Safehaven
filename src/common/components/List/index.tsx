@@ -11,6 +11,7 @@ interface Props {
 function List({ icon, title, paragraph, className }: Props) {
   return (
     <li className={cn("flex justify-center items-start gap-4 w-[80%]", className)}>
+      
       {icon && (
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground/90 mt-[0.3rem]">
           {icon}

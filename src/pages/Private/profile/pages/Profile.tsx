@@ -10,8 +10,8 @@ function Profile() {
   const { user } = useAuth()
 
   return (
-    <div className="bg-background graphics-container block ">
-      <div className="flex flex-col items-center xl:items-start xl:flex-row gap-20 md:gap-28 xl:gap-16 md:pt-[4rem] mb-20">
+    <div className="bg-background graphics-container block">
+      <div className="flex flex-col items-center xl:items-start xl:flex-row gap-20 md:gap-28 xl:gap-16 md:pt-[6rem] mb-20">
         <div className="flex flex-col justify-center items-center basis-1/2 2xl:basis-1/3 min-w-[320px]">
           <figure className="absolute rounded-full p-2 border-[0.3rem] border-foreground z-50">
             <img

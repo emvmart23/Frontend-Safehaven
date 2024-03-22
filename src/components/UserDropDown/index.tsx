@@ -41,10 +41,10 @@ function UserDropDown({ className, text }: Props) {
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         {user ? (
-          <Button  size="icon" variant="outline" className={`${className} `}>
+          <Button size="icon" variant="outline" className={`${className} `}>
             <Avatar>
               <AvatarImage>
-                                  
+
               </AvatarImage>
               <AvatarFallback className="bg-transparent">
                 {getInitials(user?.name)}
@@ -63,15 +63,22 @@ function UserDropDown({ className, text }: Props) {
       >
         <DropdownMenuSeparator />
         {
-          user ? ( 
+          user ? (
             <div className="flex-col flex">
               <Button onClick={() => {
+                //saca el contenido de los onClick en un arrow function
                 //corregir el rebote de imagen de perfil
                 navigate("/privado/perfil")
                 setIsOpen(false)
               }}>
                 Perfil
               </Button>
+              <Button variant="outline" onClick={() => {
+                navigate("/privado/ayuda/servicio")
+                setIsOpen(false)
+              }}>
+                Ayuda
+              </Button >
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="outline">Salir</Button>
