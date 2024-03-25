@@ -3,6 +3,7 @@ import api from "@/service/api";
 import { setTokenResponse, setUser } from "@/store/slices";
 import { useAppDispatch } from "@/store/store";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
 /**  
  * This function allows users to authenticate using their Google account
@@ -10,6 +11,7 @@ import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
  */
 
 function useGoogleAuth() {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse: TokenResponse) => {
@@ -27,6 +29,7 @@ function useGoogleAuth() {
       // User's data store in browser
       setLocalStorage("user", JSON.stringify(data));
       setCookie("accessToken", tokenResponse.access_token, 1);
+      navigate("/")
     },
     onError: (errorResponse) => console.log(errorResponse),
   });
