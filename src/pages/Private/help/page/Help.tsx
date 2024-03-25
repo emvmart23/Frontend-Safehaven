@@ -39,7 +39,7 @@ export function Help() {
                 <ul className="flex flex-col mx-auto gap-10 w-full md:w-[80%] xl:w-[60%] xl:max-w-[500px] pt-5">
                     {links.map(({ to, img, title }, index) => (
                         <Button onClick={() => handlerRedirectButton(to)} variant="outline" key={index} className="flex justify-start items-center gap-1 md:gap-8 w-full h-[7.2rem] rounded-xl shadow-2xl sm:text-center">
-                            <img src={img} alt="" className="w-[6rem] h-full p-3 bg-purpouse/30 rounded-xl"/>
+                            <img src={img} alt="" className="w-[6rem] h-full p-3 bg-purpouse/70 rounded-xl"/>
                             <strong className="w-full sm:text-[1rem]">{title}</strong>
                         </Button>
                     ))}

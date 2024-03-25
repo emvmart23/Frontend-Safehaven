@@ -28,7 +28,7 @@ function PlacesAutocomplete({ setSelected }: Props) {
         const { lat, lng } = await getLatLng(results[0])
         setSelected({ lat, lng })
     }
-
+    console.log(ready)
     return (
         <Command onSelect={handleSelect} className="rounded-lg border shadow-md w-[40%]">
             <CommandInput

@@ -1,4 +1,3 @@
-import { List } from "@/common/components"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/Accordion"
 import { Button } from "@/components/ui/Button"
 

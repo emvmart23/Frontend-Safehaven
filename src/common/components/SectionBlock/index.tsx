@@ -35,7 +35,7 @@ function SectionBlock({ title, children, className, icon, back }: Props) {
           back={back}
           text={title}
           className="
-            text-[1.4rem] md:text-[1.9rem] xl:text-[2.1rem] text-foreground font-semibold
+            text-[1.4rem] md:text-[1.9rem] xl:text-[2.5rem] text-foreground font-semibold
             " />
           {icon}
       </div>
