@@ -14,7 +14,7 @@ const Images = [
 ]
 
 export default function Home() {
-  const [isHover, setIsHover] = useState(false)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }))
   return (
     <>
@@ -57,7 +57,7 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.6 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           variants={{
             hidden: { opacity: 0, y: 50 },
             visible: { opacity: 1, y: 0 }
@@ -81,11 +81,11 @@ export default function Home() {
             <Card
               key={index}
               className="pl-6"
-              onMouseOver={() => setIsHover(true) }
-              onMouseOut={() => setIsHover(false) }
+              onMouseOver={() => setHoveredIndex(index)}
+              onMouseOut={() => setHoveredIndex(null)}
             >
               <CardHeader className="relative md:w-[24rem]">
-                <Cog className={`absolute -left-[0.6rem] top-[1.4rem] ${isHover && "animate-spin"} `} size={80} />
+                <Cog className={`absolute -left-[0.6rem] top-[1.4rem] ${hoveredIndex === index && "animate-spin"} `} size={80} />
                 <img src={img} alt="" className="w-80 z-50" />
               </CardHeader>
               <CardContent className="w-[24rem]">

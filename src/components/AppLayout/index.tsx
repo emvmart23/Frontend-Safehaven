@@ -2,7 +2,7 @@ import Sidebar from "@/components/Sidebar";
 import { LogoSafehavenExpanded } from "@/components/Icons";
 import { UserDropDown, TailwindIndicator } from "@/components/index";
 import { Separator } from "@/components/ui/Separator";
-import { AlignJustify } from "lucide-react";
+import { AlignJustify, BellRing } from "lucide-react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ProgressBar, Toggle } from "@/common/components/index";
 import { Toaster } from "../ui/Toaster";

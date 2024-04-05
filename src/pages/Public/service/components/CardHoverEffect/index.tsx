@@ -30,11 +30,13 @@ const variants = {
   },
 };
 
+const libraries = String(['places'])
+
 const HoverEffect = ({ items }: Items) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_PUBLIC_GOOGLE_MAPS_API_KEY,
-    libraries: ["places"]
+    [libraries]: libraries
   })
 
   if (!isLoaded) return <div>Loading...</div>;

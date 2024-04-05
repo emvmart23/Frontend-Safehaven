@@ -17,15 +17,15 @@ function Map() {
         <>
             <PlacesAutocomplete setSelected={setSelected} />
 
-            {selected ? 
+            {/* {selected ?  */}
                 <GoogleMap
                     zoom={5}
                     center={center}
-                    mapContainerClassName="w-80 h-80 absolute"
+                    mapContainerClassName="w-96 h-96 absolute top-40 rounded-xl"
                 >
                     {selected && <Marker position={selected} />}
                 </GoogleMap> 
-            : null}
+            {/* : null} */}
         </>
     )
 }

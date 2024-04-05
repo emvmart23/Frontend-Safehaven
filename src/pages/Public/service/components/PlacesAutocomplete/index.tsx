@@ -20,21 +20,21 @@ function PlacesAutocomplete({ setSelected }: Props) {
         clearSuggestions
     } = usePlacesAutocomplete()
 
-    const handleSelect = async (address: any) => {
+    const handleSelect = async (address: string) => {
         setValue(address, false)
         clearSuggestions()
 
-        const results = await getGeocode(address);
+        const results = await getGeocode({ address });
         const { lat, lng } = await getLatLng(results[0])
         setSelected({ lat, lng })
     }
-    console.log(ready)
+
     return (
-        <Command onSelect={handleSelect} className="rounded-lg border shadow-md w-[40%]">
+        <Command onSelect={() => handleSelect} className="rounded-lg border shadow-md w-[40%]">
             <CommandInput
                 value={value}
                 onChangeCapture={(e) => setValue(e.currentTarget.value)}
-                disabled={!ready}
+                disabled={ready}
                 placeholder="Search an address" />
             <CommandList>
                 {status === "OK" ?
