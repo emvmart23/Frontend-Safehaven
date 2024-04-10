@@ -6,9 +6,10 @@ interface Props {
   className?: string;
   children?: React.ReactNode;
   icon?: React.ReactNode;
+  back?: boolean;
 }
 
-function SectionBlock({ title, children, className, icon }: Props) {
+function SectionBlock({ title, children, className, icon, back }: Props) {
   return (
     <section
       className={cn(
@@ -30,10 +31,11 @@ function SectionBlock({ title, children, className, icon }: Props) {
         gap-2
       "
       >
-        <AnimatedTitle
+        <AnimatedTitle 
+          back={back}
           text={title}
           className="
-            text-[1.4rem] md:text-[2.2rem] text-foreground font-semibold
+            text-[1.4rem] md:text-[1.9rem] xl:text-[2.5rem] text-foreground font-semibold
             " />
           {icon}
       </div>

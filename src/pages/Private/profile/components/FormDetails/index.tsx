@@ -15,7 +15,8 @@ function FormDetails() {
     const form = useForm<z.infer<typeof ProfileEditSchema>>({
         resolver: zodResolver(ProfileEditSchema),
         defaultValues: {
-            name: user?.name,
+            name: user?.given_name ?? user?.name,
+            lastname: user?.family_name ?? user?.lastname,
             email: user?.email,
             phone: user?.phone
         }
@@ -48,12 +49,12 @@ function FormDetails() {
                 />
                 <FormField
                     control={form.control}
-                    name="email"
+                    name="lastname"
                     render={({ field }) => (
                         <FormItem className="relative">
-                            <FormLabel className="absolute top-1 start-[0.4rem] p-1 h-full text-foreground">Email</FormLabel>
+                            <FormLabel className="absolute top-1 start-[0.4rem] p-1 h-full text-foreground">Apellido</FormLabel>
                             <FormControl>
-                                <Input className="h-[4rem] pt-5" placeholder="shadcn" {...field} disabled={user.sub ? true : false} />
+                                <Input className="h-[4rem] pt-5" placeholder="shadcn" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -61,28 +62,43 @@ function FormDetails() {
                 />
                 <FormField
                     control={form.control}
-                    name="phone"
+                    name="email"
                     render={({ field }) => (
                         <FormItem className="relative">
-                            <FormLabel className="absolute top-2 start-[0.4rem] p-1 h-full text-foreground">Numero</FormLabel>
+                            <FormLabel className="absolute top-1 start-[0.4rem] p-1 h-full text-foreground">Email</FormLabel>
                             <FormControl>
-                                <Input
-                                    className="h-[4rem] pt-5"
-                                    type="text"
-                                    pattern="^\d{1,9}$"
-                                    onInput={(e) =>
-                                    (e.currentTarget.value = e.currentTarget.value.replace(
-                                        /[^\d]/g,
-                                        ""
-                                    ))
-                                    }
-                                    {...field}
-                                />
+                                <Input className="h-[4rem] pt-5" placeholder="shadcn" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
+                {!user?.sub ? (
+                    <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                            <FormItem className="relative">
+                                <FormLabel className="absolute top-2 start-[0.4rem] p-1 h-full text-foreground">Numero</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        className="h-[4rem] pt-5"
+                                        type="text"
+                                        pattern="^\d{1,9}$"
+                                        onInput={(e) =>
+                                        (e.currentTarget.value = e.currentTarget.value.replace(
+                                            /[^\d]/g,
+                                            ""
+                                        ))
+                                        }
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                ) : null}
                 <Button className="w-full" >
                     Guardar cambios
                 </Button>

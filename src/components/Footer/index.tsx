@@ -10,15 +10,15 @@ const data = [
 const icons = [
     {
         logo: <Twitter />,
-        ref: "https://github.com/emvmart23",
+        ref: "",
     },
     {
         logo: <Linkedin />,
-        ref: "https://www.linkedin.com/in/max-saavedraa/",
+        ref: "",
     },
     {
         logo: <Instagram />,
-        ref: "https://www.linkedin.com/in/max-saavedraa/",
+        ref: "",
     }
 ];
 

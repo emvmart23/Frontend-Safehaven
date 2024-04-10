@@ -3,7 +3,6 @@ import { z } from "zod";
 const requiredErrorMsg = "Este campo no puede estar vacío";
 
 export const ExtraSchema = z.object({
-  lastname: z.string().min(1, { message: requiredErrorMsg }).trim(),
   password: z.string().min(1, { message: requiredErrorMsg }),
 });
 
@@ -14,6 +13,7 @@ export const ProfileSchema = z.object({
       message: requiredErrorMsg,
     })
     .trim(),
+  lastname: z.string().min(1, { message: requiredErrorMsg }).trim(),
   email: z
     .string()
     .min(1, { message: "Se requiere un correo electronico" })

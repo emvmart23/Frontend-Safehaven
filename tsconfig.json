@@ -25,6 +25,6 @@
       ],
     },
   },
-  "include": ["src/**/*.d.ts", "src/**/*.tsx", "src/**/*.ts"],
+  "include": ["src/**/*.d.ts", "src/**/*.tsx", "src/**/*.ts", "src/pages/Private/adress/components/index.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

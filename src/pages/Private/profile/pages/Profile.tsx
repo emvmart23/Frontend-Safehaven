@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/Button"
 import useAuth from "@/hooks/useAuth"
-import { BadgeHelp, Mail, MapPin, RefreshCw, UserRound } from "lucide-react"
+import { BadgeHelp, Mail, MapPin, UserRound } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import SwichToWorkerRole from "../components/SwichToWorkerRole"
 
 function Profile() {
-  const navigate =useNavigate()
-  
-  const { user } = useAuth()  
+  const navigate = useNavigate()
+
+  const { user } = useAuth()
 
   return (
-    <div className="bg-background graphics-container block ">
-      <div className="flex flex-col items-center xl:items-start xl:flex-row gap-20 md:gap-28 xl:gap-16 md:pt-[4rem] mb-20">
+    <div className="bg-background graphics-container block">
+      <div className="flex flex-col items-center xl:items-start xl:flex-row gap-20 md:gap-28 xl:gap-16 md:pt-[6rem] mb-20">
         <div className="flex flex-col justify-center items-center basis-1/2 2xl:basis-1/3 min-w-[320px]">
           <figure className="absolute rounded-full p-2 border-[0.3rem] border-foreground z-50">
             <img
@@ -59,11 +59,12 @@ function Profile() {
         <div className="flex flex-col gap-10 w-[18rem] md:w-[24rem]">
           <div className="flex flex-col gap-4 2xl:gap-8">
             <h2 className="font-semibold text-xl">¿ Quieres ofrecer servicios ?</h2>
-            <SwichToWorkerRole/>
+            <SwichToWorkerRole />
           </div>
           <div className="flex flex-col gap-4 2xl:gap-8">
             <h2 className="font-semibold text-xl">Centro de soporte</h2>
             <Button
+              onClick={() => navigate("/privado/ayuda/reserva", { replace: true })}
               variant="outline"
               className="flex justify-start gap-3 h-[2.8rem]"
             >

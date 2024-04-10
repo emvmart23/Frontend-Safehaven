@@ -3,19 +3,20 @@ import { store } from '@/store/store'
 import { ThemeProvider } from '@/context/theme'
 import { BrowserRouter } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import { ScrollToTop } from '@/tools/ScrollToTop';
 
 interface Props {
   children: React.ReactNode
 }
 
 function Providers({ children }: Props) {
-  
+
   const client_id = import.meta.env.VITE_CLIENT_ID;
-  
+
   return (
     <GoogleOAuthProvider clientId={client_id}>
       <BrowserRouter>
+        <ScrollToTop />
         <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
           <Provider store={store}>
             {children}

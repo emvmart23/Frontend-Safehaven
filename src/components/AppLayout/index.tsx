@@ -14,8 +14,8 @@ const Footer = lazy(() => import("../Footer/index"))
 function AppLayout() {
   const { pathname } = useLocation()
 
-  const showFooter = `/privado/${Object.values(PrivateRoutes).find((e) => `/privado/${e}` === pathname)}`
-
+  const showFooter = `/privado/${Object.values(PrivateRoutes).find((e) => `/privado/${e}` === pathname || `/privado/ayuda/${e}` === pathname )}`
+  
   return (
     <div className="bg-background/95 w-full h-full flex-col min-w-[320px]">
       <nav className="flex bg-background/95 border-b h-16 p-6 lg:hidden">

@@ -1,11 +1,11 @@
 import { HeaderImageWrapper, List, SectionBlock } from "@/common/components";
-import { Card, CardContent, CardHeader } from "@/components/ui/Card";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carrousel";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/Card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/Carrousel";
 import { data, dataList } from "@/data/dataHome";
 import { Cog, Star } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Autoplay from "embla-carousel-autoplay"
-import Footer from "@/components/Footer";
+import { motion } from "framer-motion"
 
 const Images = [
   { id: 1, alt: "Cerrajero" },
@@ -14,15 +14,16 @@ const Images = [
 ]
 
 export default function Home() {
+  const [isHover, setIsHover] = useState(false)
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }))
   return (
     <>
       <HeaderImageWrapper
         className=" bg-foreground/10"
         title="Safehaven"
-        paragraph="Transforma tu experiencia de contratación de servicios a domicilio en Lima con nuestra plataforma"
+        paragraph={<span>Transforma tu experiencia de<span className="text-purpouse/80"> contratación de servicios a domicilio en Lima</span> con nuestra plataforma</span>}
       >
-        <Carousel opts={{ loop: false }} plugins={[plugin.current]} className="shadow-2xl w-full rounded-2xl ">
+        <Carousel opts={{ loop: true }} plugins={[plugin.current]} className="shadow-2xl w-full rounded-2xl ">
           <CarouselContent>
             {Images.map(({ id, alt }) => (
               <CarouselItem key={id} className="w-full h-full">
@@ -34,14 +35,16 @@ export default function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="left-5 text-white" />
+          <CarouselNext className="right-5 text-white " />
         </Carousel>
       </HeaderImageWrapper>
       <SectionBlock
-        title={"Lo más Popular "}
+        title={"Lo Más Popular "}
         icon={<Star className="w-8 h-8" />}
         className="flex-col justify-center items-center mt-[2rem]"
       >
-        <p
+        <motion.p
           className="
           mb-[3rem]
           w-[40%] 
@@ -50,11 +53,20 @@ export default function Home() {
           text-[0.9rem] 
           md:text-[1rem]
           text-foreground/90
-          ">
+          "
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          variants={{
+            hidden: { opacity: 0, y: 50 },
+            visible: { opacity: 1, y: 0 }
+          }}
+        >
           Descubre nuestros servicios más populares desde electricistas expertos
           que iluminarán tu hogar con soluciones eficientes, hasta fontaneros y
           gasfiteros dedicados a resolver cualquier problema de plomería.
-        </p>
+        </motion.p>
         <div
           className="
           flex 
@@ -68,111 +80,56 @@ export default function Home() {
           {data.map(({ name, text, img }, index) => (
             <Card
               key={index}
-              className="
-                group
-                pb-16 
-                md:pb-[4rem] 
-                relative 
-                overflow-hidden 
-                bg-transparent 
-                border-none
-                w-[18rem]
-                sm:w-[26rem] 
-                shadow-b-2xl"
+              className="pl-6"
+              onMouseOver={() => setIsHover(true) }
+              onMouseOut={() => setIsHover(false) }
             >
-              <CardHeader>
-                <div
-                  className="
-                  group-hover:translate-y-0 
-                  transition-all 
-                  duration-700 
-                  translate-y-full 
-                  top-0 
-                  right-0 
-                  bottom-10 
-                  left-0 
-                  absolute 
-                  bg-gradient-to-b 
-                  from-transparent 
-                  to-black
-                  z-10"
-                />
-                <img
-                  src={img}
-                  alt=""
-                  className="
-                    transition-all 
-                    group-hover:scale-125 
-                    duration-700 
-                    mr-2
-                    sm:h-60
-                    h-[10rem] 
-                    w-full"
-                />
+              <CardHeader className="relative md:w-[24rem]">
+                <Cog className={`absolute -left-[0.6rem] top-[1.4rem] ${isHover && "animate-spin"} `} size={80} />
+                <img src={img} alt="" className="w-80 z-50" />
               </CardHeader>
-              <CardContent
-                className="
-                bg-foreground 
-                absolute 
-                z-10 
-                bottom-0 
-                left-0 
-                w-full 
-                h-[6rem]
-                flex 
-                flex-col 
-                justify-center 
-                items-center"
-              >
-                <div
-                  className="
-                  w-full 
-                  flex 
-                  justify-center
-                  absolute 
-                  -top-5 
-                  z-20"
-                >
-                  <Cog
-                    className="
-                    group-hover:bg-white
-                    group-hover:text-black 
-                      group-hover:rotate-180 
-                      w-10 
-                      h-10
-                      bg-black 
-                      text-white 
-                      p-2 
-                      rounded-full 
-                      transition-all"
-                  />
-                </div>
-                <div
-                  className="
-                  group-hover:hidden 
-                  transition-all 
-                  duration-1000 
-                  w-5 
-                  absolute 
-                  overflow-hidden 
-                  inline-block 
-                  right-0 
-                  -top-6"
-                >
-                  <div
-                    className="
-                    h-6 
-                    bg-foreground/90 
-                    -rotate-45 
-                    transform 
-                    origin-bottom-right"
-                  />
-                </div>
-                <h2 className="font-bold text-background mt-7">{name}</h2>
-                <span className="font-medium text-background text-[0.8rem] text-center relative top-">
-                  {text}
-                </span>
+              <CardContent className="w-[24rem]">
+                <motion.h3
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ delay: 0.2, duration: 0.3 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 50 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  className="font-semibold text-[1.2rem] mb-2">
+                  {name}
+                </motion.h3>
+                <motion.p
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 50 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  className="text-foreground/80"
+                >{text}
+                </motion.p>
               </CardContent>
+              <CardFooter>
+                <motion.button
+                  className="bg-[#1649BC] text-white p-2 rounded-lg"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 50 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                >
+                  Solicitar ahora!
+                </motion.button>
+
+              </CardFooter>
             </Card>
           ))}
         </div>

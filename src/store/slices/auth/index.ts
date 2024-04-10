@@ -9,7 +9,7 @@ import {
   setLocalStorage,
   setSessionStorage,
 } from "@/tools";
-import { User } from "@/types/auth";
+import { User } from "@/types/user";
 import { TokenResponse } from "@react-oauth/google";
 import { createSlice } from "@reduxjs/toolkit";
 
