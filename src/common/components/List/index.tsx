@@ -12,7 +12,6 @@ interface Props {
 function List({ icon, title, paragraph, className }: Props) {
   return (
     <li className={cn("flex justify-center items-start gap-4 w-[80%]", className)}>
-
       {icon && (
         <motion.div
           initial="hidden"

@@ -26,7 +26,7 @@ function PlacesAutocomplete({ setSelected }: Props) {
 
         const results = await getGeocode(address);
         const { lat, lng } = await getLatLng(results[0])
-        setSelected({ lat, lng })
+        setSelected({ lat, lng }) 
     }
     console.log(ready)
     return (
