@@ -4,7 +4,6 @@ import ReactPlayer from 'react-player'
 import { CardHoverEffect } from '../components/index';
 import { motion } from "framer-motion"
 
-
 function Services() {
   const videoUrl = "../../src/assets/videos/serviceVideo.mp4"
 

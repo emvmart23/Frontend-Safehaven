@@ -3,8 +3,7 @@ import { useState } from "react";
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet";
 import { useLoadScript } from "@react-google-maps/api";
-import Map from "../Map";
-
+import MapExample from "../MapExample";
 
 interface Props {
   title: string;
@@ -39,7 +38,7 @@ const HoverEffect = ({ items }: Items) => {
     [libraries]: libraries
   })
 
-  if (!isLoaded) return <div>Loading...</div>;
+  // if (!isLoaded) return <div>Loading...</div>;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3  py-10">
@@ -53,7 +52,7 @@ const HoverEffect = ({ items }: Items) => {
             <AnimatePresence>
               {hoveredIndex === idx && (
                 <motion.span
-                  className="absolute inset-0 h-full w-full bg-[#6d28d9] block  rounded-3xl"
+                  className="absolute inset-0 h-full w-full bg-[#6d28d9] block rounded-3xl"
                   layoutId="hoverBackground"
                   variants={variants}
                 />
@@ -71,8 +70,8 @@ const HoverEffect = ({ items }: Items) => {
                 </CardDescription>
               </Card>
             </SheetTrigger>
-            <SheetContent side={"top"} className="flex flex-col justify-center items-center">
-              <Map/>
+            <SheetContent side={"top"} className="flex flex-col justify-center items-center h-80">
+              <MapExample/>
             </SheetContent>
           </div>
         </Sheet>
