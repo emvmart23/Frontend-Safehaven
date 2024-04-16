@@ -1,8 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
-
-import { cn } from "@/lib/utils"
 
 import {
   Form,
@@ -14,66 +12,50 @@ import {
   FormMessage,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/TextArea";
 import { Button } from "@/components/ui/Button";
 import { Link } from "react-router-dom";
-import requestSchema from "@/lib/validators/requestScheme";
+import contactSchema from "@/lib/validators/requestScheme";
 
-
-type ProfileFormValues = z.infer<typeof requestSchema>;
+type ContactFormValues = z.infer<typeof contactSchema>;
 
 // This can come from your database or API.
-const defaultValues: Partial<ProfileFormValues> = {
-  bio: "I own a computer.",
-  urls: [
-    { value: "https://shadcn.com" },
-    { value: "http://twitter.com/shadcn" },
-  ],
+const defaultValues: Partial<ContactFormValues> = {
+  message: "I own a computer.",
 };
 
-export function Request() {
-  const form = useForm<ProfileFormValues>({
-    resolver: zodResolver(requestSchema),
+export function Contact() {
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
     defaultValues,
     mode: "onChange",
   });
 
-  const { fields, append } = useFieldArray({
-    name: "urls",
-    control: form.control,
-  });
-
-  function onSubmit(data: ProfileFormValues) {
+  function onSubmit(data: ContactFormValues) {
     console.log(data);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 md:w-[50%]">
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel className="text-[1.2rem]">Name</FormLabel>
               <FormControl>
                 <Input
                   maxLength={9}
                   type="tel"
-                  placeholder="shadcn"
+                  placeholder="User"
+                  className="text-[1rem]"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
+                pseudonym.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -84,19 +66,16 @@ export function Request() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
+              <FormLabel className="text-[1.2rem]">Email</FormLabel>
+              <FormControl>
+                <Input
+                  className="text-[1rem]"
+                  maxLength={20}
+                  type="email"
+                  placeholder="example@gmail.com"
+                  {...field}
+                />
+              </FormControl>
               <FormDescription>
                 You can manage verified email addresses in your{" "}
                 <Link to="">Link</Link>.
@@ -107,13 +86,13 @@ export function Request() {
         />
         <FormField
           control={form.control}
-          name="bio"
+          name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Bio</FormLabel>
+              <FormLabel className="text-[1.2rem]">Mensaje</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about yourself"
+                  placeholder="Tell us a little bit about your consult"
                   className="resize-none"
                   {...field}
                 />
@@ -126,39 +105,35 @@ export function Request() {
             </FormItem>
           )}
         />
-        <div>
-          {fields.map((field, index) => (
-            <FormField
-              control={form.control}
-              key={field.id}
-              name={`urls.${index}.value`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={cn(index !== 0 && "sr-only")}>
-                    URLs
-                  </FormLabel>
-                  <FormDescription className={cn(index !== 0 && "sr-only")}>
-                    Add links to your website, blog, or social media profiles.
-                  </FormDescription>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          ))}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="mt-2"
-            onClick={() => append({ value: "" })}
-          >
-            Add URL
-          </Button>
-        </div>
-        <Button type="submit">Update profile</Button>
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-[1.2rem]">Phone</FormLabel>
+              <FormControl>
+                <Input
+                  className="text-[1rem]"
+                  type="text"
+                  pattern="^\d{1,9}$"
+                  onInput={(e) =>
+                    (e.currentTarget.value = e.currentTarget.value.replace(
+                      /[^\d]/g,
+                      ""
+                    ))
+                  }
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                This is your public display phone.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
