@@ -37,7 +37,6 @@ export default function MapExample() {
         chunkedLoading
         // iconCreateFunction={createClusterCustomIcon}
       >
-        {/* Mapping through the markers */}
         {markers.map((marker, index) => (
           <Marker position={marker.geocode} key={index}>
             <Popup>{marker.popUp}</Popup>
